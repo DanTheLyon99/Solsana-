@@ -99,6 +99,16 @@
     }
     .nav a:hover, .drop-toggle:hover { color: var(--mustard-deep); }
     .dropdown { position: relative; }
+    /* Invisible bridge so the pointer can travel from the label onto the menu. */
+    .dropdown::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 22px;
+    }
     .drop-toggle {
       background: none;
       border: 0;
@@ -112,9 +122,9 @@
     .drop-toggle svg { width: 12px; height: 12px; }
     .drop-menu {
       position: absolute;
-      top: calc(100% + 14px);
+      top: calc(100% + 8px);
       left: 50%;
-      transform: translateX(-50%) translateY(6px);
+      transform: translateX(-50%);
       min-width: 260px;
       background: var(--white);
       border: 1px solid var(--line);
@@ -130,7 +140,7 @@
     .dropdown.open .drop-menu {
       opacity: 1;
       pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%);
     }
     .drop-menu a {
       display: block;
@@ -417,6 +427,10 @@
         gap: 14px;
       }
       .header.open .dropdown { width: 100%; }
+      .dropdown::after { display: none; }
+      .dropdown:hover .drop-menu,
+      .dropdown:focus-within .drop-menu,
+      .dropdown.open .drop-menu { transform: none; }
       .drop-menu {
         position: static;
         transform: none;
@@ -464,9 +478,9 @@
       </nav>
 
       <div class="header-actions">
-        <a class="phone" href="tel:+164733333333">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.8h2.4c.5 0 .9.3 1 .8l.7 2.7c.1.5 0 1-.4 1.3L8.8 10.4a13 13 0 0 0 4.8 4.8l.8-1.4c.3-.4.8-.5 1.3-.4l2.7.7c.5.1.8.5.8 1v2.4c0 .6-.5 1.1-1.1 1-7.3-1.1-13.1-6.9-14.2-14.2-.1-.6.4-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.7"/></svg>
-          647-3333-3333
+        <a class="phone" href="tel:+14169978020">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+          416-997-8020
         </a>
         <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Book Online</a>
         <button class="menu-btn" id="menu-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -479,7 +493,7 @@
       <div class="hero-bg"></div>
       <div class="wrap hero-copy">
         <div class="eyebrow">Athletic therapy · Sports rehab · Toronto</div>
-        <h1>Recover with the sun.<br><span class="accent">Return stronger.</span></h1>
+        <h1>Recovery,<br>Performance,<br><span class="accent">Optimization</span></h1>
         <p class="lede">Solsana helps athletes and active people get out of pain, move better, and stay in the game through hands-on treatment, rehab, and performance-based care.</p>
         <div class="hero-cta">
           <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Get started →</a>
@@ -603,7 +617,7 @@
         <div>
           <h4>Contact</h4>
           <ul>
-            <li><a href="tel:+164733333333">647-3333-3333</a></li>
+            <li><a href="tel:+14169978020">416-997-8020</a></li>
             <li><a href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Book online</a></li>
             <li>Toronto, Ontario</li>
           </ul>
