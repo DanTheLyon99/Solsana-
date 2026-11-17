@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solsana | Athletic Therapy & Performance — Toronto</title>
+  <meta name="description" content="Solsana is an athletic therapy clinic in Toronto offering sports massage, electroacupuncture, shockwave therapy, and strength and conditioning.">
+  <link rel="icon" href="imgs/solsana-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mustard: #c9a227;
+      --mustard-deep: #a6841a;
+      --mustard-soft: #e8d48b;
+      --cream: #f7f1e3;
+      --ink: #1c1914;
+      --ink-soft: #3a342b;
+      --muted: #6b645a;
+      --white: #ffffff;
+      --card: #f6f3ee;
+      --line: #ece6db;
+      --shadow: 0 18px 50px rgba(28, 25, 20, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-width: 0;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, #8f6c12 0%, #d4af37 38%, #f3e0a6 50%, #d4af37 62%, #8f6c12 100%);
+      color: var(--ink);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 9px 16px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-crop {
+      display: block;
+      width: 74px;
+      height: 74px;
+      overflow: hidden;
+      position: relative;
+    }
+    .logo-crop img {
+      position: absolute;
+      height: 210%;
+      width: 210%;
+      max-width: none;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .nav a:hover, .drop-toggle:hover { color: var(--mustard-deep); }
+    .dropdown { position: relative; }
+    .drop-toggle {
+      background: none;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    .drop-toggle svg { width: 12px; height: 12px; }
+    .drop-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 260px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.18s ease;
+    }
+    .dropdown:hover .drop-menu,
+    .dropdown:focus-within .drop-menu,
+    .dropdown.open .drop-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .drop-menu a {
+      display: block;
+      padding: 11px 14px;
+      border-radius: 10px;
+      color: var(--ink-soft);
+    }
+    .drop-menu a:hover { background: var(--cream); color: var(--ink); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .phone svg { width: 16px; height: 16px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .btn-mustard {
+      background: var(--mustard);
+      color: var(--ink);
+      box-shadow: 0 8px 20px rgba(201, 162, 39, 0.28);
+    }
+    .btn-mustard:hover { background: #d7b131; transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      width: 42px;
+      height: 42px;
+    }
+    .menu-btn span {
+      display: block;
+      height: 2px;
+      background: var(--ink);
+      margin: 6px 8px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: min(86vh, 820px);
+      color: var(--white);
+      overflow: hidden;
+      display: grid;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(18,15,10,0.82) 0%, rgba(18,15,10,0.55) 48%, rgba(18,15,10,0.28) 100%),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      padding: 88px 0 72px;
+      max-width: 720px;
+      min-width: 0;
+      width: 100%;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mustard-soft);
+      margin-bottom: 18px;
+    }
+    .eyebrow img { height: 22px; filter: brightness(10); }
+    h1, h2, .display {
+      font-family: "Barlow Condensed", sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-transform: none;
+    }
+    h1 {
+      font-size: clamp(52px, 8vw, 92px);
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+    h1 .accent { color: var(--mustard-soft); }
+    .lede {
+      font-size: 18px;
+      max-width: 540px;
+      color: rgba(255,255,255,0.86);
+      margin: 10px 0 28px;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; max-width: 100%; }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 22px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+    }
+    .pills span { display: inline-flex; align-items: center; gap: 8px; }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--mustard);
+    }
+    .review-chip {
+      position: absolute;
+      right: max(20px, calc((100vw - 1180px) / 2));
+      bottom: 36px;
+      background: rgba(255,255,255,0.96);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    .stars { color: #f4b400; letter-spacing: 1px; }
+
+    .section { padding: 92px 0; }
+    .kicker {
+      color: var(--mustard-deep);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 14px; }
+    .section p.intro {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+    .card { grid-column: span 2; }
+    .card.wide { grid-column: span 3; }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      min-height: 210px;
+      position: relative;
+      transition: 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      margin-bottom: 28px;
+      color: var(--mustard-deep);
+    }
+    .card h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    .cta-banner {
+      margin-top: 36px;
+      border: 1px solid #f0d48a;
+      background: linear-gradient(180deg, #fffdf7, #fff8e8);
+      border-radius: 999px;
+      padding: 14px 18px 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 0 0 6px rgba(201,162,39,0.08);
+    }
+    .cta-banner strong { display: block; }
+    .cta-banner p { color: var(--muted); }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .why { background: var(--cream); }
+    .steps { display: grid; gap: 22px; }
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      background: var(--white);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .num {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 32px;
+      color: var(--mustard-deep);
+      font-weight: 800;
+    }
+
+    footer {
+      background: var(--ink);
+      color: #efe8d8;
+      padding: 56px 0 28px;
+    }
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 36px;
+    }
+    footer .logo-crop { width: 96px; height: 96px; }
+    footer h4 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    footer a:hover { color: var(--mustard-soft); }
+    footer ul { list-style: none; display: grid; gap: 8px; color: #d6ccb8; }
+    .copy {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 18px;
+      color: #b6ad9c;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+      .card, .card.wide { grid-column: auto; }
+      .split, .foot-grid { grid-template-columns: 1fr; }
+      .review-chip { left: 20px; right: auto; }
+    }
+    @media (max-width: 760px) {
+      .nav, .phone { display: none; }
+      .menu-btn { display: block; }
+      .topbar { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      h1 { font-size: 40px; }
+      .lede { font-size: 16px; }
+      .hero-copy { padding: 64px 0 96px; }
+      .btn { padding: 12px 16px; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .hero-cta .btn { width: 100%; }
+      .header.open .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        left: 0; right: 0; top: 82px;
+        background: var(--white);
+        padding: 18px 24px 24px;
+        border-bottom: 1px solid var(--line);
+        gap: 14px;
+      }
+      .header.open .dropdown { width: 100%; }
+      .drop-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        box-shadow: none;
+        display: none;
+      }
+      .dropdown.open .drop-menu { display: block; }
+      .cards { grid-template-columns: 1fr; }
+      .card, .card.wide { grid-column: auto; }
+      .cta-banner {
+        border-radius: 22px;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+      }
+          .hero { min-height: 78vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Athletic therapy in Toronto · Now booking sports rehab assessments</div>
+
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#top" aria-label="Solsana home">
+        <span class="logo-crop"><img src="imgs/solsana-logo.svg" alt="Solsana"></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="dropdown" id="services-drop">
+          <button class="drop-toggle" aria-expanded="false" aria-controls="services-menu">
+            Our Services
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-menu" id="services-menu">
+            <a href="#sports-rehabilitation">Sports Rehabilitation</a>
+            <a href="#sports-massage">Sports Massage Therapy</a>
+            <a href="#electroacupuncture">Electroacupuncture</a>
+            <a href="#shockwave">Shockwave Therapy</a>
+            <a href="#strength">Strength and Conditioning</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a class="phone" href="tel:+164733333333">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.8h2.4c.5 0 .9.3 1 .8l.7 2.7c.1.5 0 1-.4 1.3L8.8 10.4a13 13 0 0 0 4.8 4.8l.8-1.4c.3-.4.8-.5 1.3-.4l2.7.7c.5.1.8.5.8 1v2.4c0 .6-.5 1.1-1.1 1-7.3-1.1-13.1-6.9-14.2-14.2-.1-.6.4-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.7"/></svg>
+          647-3333-3333
+        </a>
+        <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Book Online</a>
+        <button class="menu-btn" id="menu-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="wrap hero-copy">
+        <div class="eyebrow">Athletic therapy · Sports rehab · Toronto</div>
+        <h1>Recover with the sun.<br><span class="accent">Return stronger.</span></h1>
+        <p class="lede">Solsana helps athletes and active people get out of pain, move better, and stay in the game through hands-on treatment, rehab, and performance-based care.</p>
+        <div class="hero-cta">
+          <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Get started →</a>
+          <a class="btn btn-ghost" href="#services">Explore services</a>
+        </div>
+        <div class="pills">
+          <span><i class="dot"></i>1-on-1 care</span>
+          <span><i class="dot"></i>Direct billing available</span>
+          <span><i class="dot"></i>Covered by extended health plans</span>
+        </div>
+      </div>
+      <div class="review-chip">★★★★★ <strong>5.0</strong> · Google reviews</div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <p class="kicker">Our services</p>
+        <h2>What’s keeping you from training?</h2>
+        <p class="intro">Whether you compete, train after work, or just want to move without pain, we’ll find what’s driving it and build a plan to get you going again.</p>
+
+        <div class="cards">
+          <article class="card" id="sports-rehabilitation">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19c2-6 6-10 8-11 2 1 6 5 8 11" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="7" r="2.2" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Sports Rehabilitation</h3>
+            <p>Assessment, return-to-play planning, and targeted rehab so you come back stronger — not just pain-free.</p>
+          </article>
+          <article class="card" id="sports-massage">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 14c2-4 8-4 10 0M5 19c3-7 11-7 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Sports Massage Therapy</h3>
+            <p>Targeted, movement-focused massage for recovery, tightness, and the physical demands of your sport.</p>
+          </article>
+          <article class="card" id="electroacupuncture">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 10-14h-7l0-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Electroacupuncture</h3>
+            <p>Neurofunctional acupuncture with electrical stimulation to reduce pain, calm irritated tissue, and restore function.</p>
+          </article>
+          <article class="card wide" id="shockwave">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h3l2-6 3 12 2-6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Shockwave Therapy</h3>
+            <p>A focused modality for stubborn tendon and soft-tissue issues that haven’t responded to rest alone.</p>
+          </article>
+          <article class="card wide" id="strength">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 9v6M7 7v10M17 7v10M20 9v6M7 12h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Strength and Conditioning</h3>
+            <p>Rebuild capacity, bulletproof weak links, and train with intent after injury — so performance lasts.</p>
+          </article>
+        </div>
+
+        <div class="cta-banner">
+          <div>
+            <strong>Not sure where to start?</strong>
+            <p>Book an assessment and we’ll point you to the right care.</p>
+          </div>
+          <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Book Assessment</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why" id="approach">
+      <div class="wrap split">
+        <div>
+          <p class="kicker">The Solsana process</p>
+          <h2>From pain to performance.</h2>
+          <p class="intro">Named for sun and healing, Solsana is built around athletic bodies that need to recover, adapt, and keep showing up.</p>
+          <a class="btn btn-mustard" href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Get started</a>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">01</div>
+            <div>
+              <h3>Discover</h3>
+              <p>Identify the root cause through a thorough assessment and movement screen.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">02</div>
+            <div>
+              <h3>Treat</h3>
+              <p>Hands-on therapy, electroacupuncture, and shockwave to reduce pain and restore mobility.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">03</div>
+            <div>
+              <h3>Rebuild</h3>
+              <p>Strength and conditioning so the result sticks — on the field, in the gym, and at work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="logo" href="#top"><span class="logo-crop" style="filter: invert(1) brightness(1.35) sepia(.25);"><img src="imgs/solsana-logo.svg" alt="Solsana"></span></a>
+          <p style="margin-top:12px; color:#d6ccb8; max-width:360px;">Athletic therapy in Toronto. Recover with the sun. Return stronger.</p>
+        </div>
+        <div>
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#sports-rehabilitation">Sports Rehabilitation</a></li>
+            <li><a href="#sports-massage">Sports Massage Therapy</a></li>
+            <li><a href="#electroacupuncture">Electroacupuncture</a></li>
+            <li><a href="#shockwave">Shockwave Therapy</a></li>
+            <li><a href="#strength">Strength and Conditioning</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+164733333333">647-3333-3333</a></li>
+            <li><a href="https://solsana.janeapp.com/" target="_blank" rel="noopener">Book online</a></li>
+            <li>Toronto, Ontario</li>
+          </ul>
+        </div>
+      </div>
+      <p class="copy">© 2026 Solsana. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById("header");
+    const menuBtn = document.getElementById("menu-btn");
+    const drop = document.getElementById("services-drop");
+    const toggle = drop.querySelector(".drop-toggle");
+
+    menuBtn.addEventListener("click", () => {
+      header.classList.toggle("open");
+    });
+
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const open = drop.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open);
+    });
+
+    document.querySelectorAll(".nav a").forEach((link) => {
+      link.addEventListener("click", () => header.classList.remove("open"));
+    });
+  </script>
+</body>
+</html>
